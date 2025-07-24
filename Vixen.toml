@@ -22,7 +22,8 @@ level = "info"
 format = "json"
 
 # 使用基本的 Yellowstone gRPC 數據源
-[sources.yellowstone_grpc]
+[[sources]]
+id = "yellowstone_grpc"
 type = "yellowstone_grpc"
 endpoint = "http://194.180.188.21:10000"
 
@@ -31,6 +32,7 @@ endpoint = "http://194.180.188.21:10000"
 owners = []
 pubkeys = ["MEViEnscUm6tsQRoGd9h6nLQaQspKj7DB2M5FwM3Xvz"]
 filters = []
+source = "yellowstone_grpc"
 
 # 監控交易更新
 [transactions.mev_transactions]
@@ -38,6 +40,7 @@ account_include = ["MEViEnscUm6tsQRoGd9h6nLQaQspKj7DB2M5FwM3Xvz"]
 account_exclude = []
 vote = false
 failed = false
+source = "yellowstone_grpc"
 
 # Jupiter 相關交易監控
 [transactions.jupiter_swaps]
@@ -46,4 +49,5 @@ account_required = [
     "MEViEnscUm6tsQRoGd9h6nLQaQspKj7DB2M5FwM3Xvz"
 ]
 vote = false
-failed = false 
+failed = false
+source = "yellowstone_grpc"
