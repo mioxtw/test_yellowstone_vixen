@@ -1,0 +1,49 @@
+# Yellowstone Vixen 最小配置文件
+# MEV 交易監控
+
+
+
+[yellowstone]
+endpoint = "http://194.180.188.21:10000"
+x_token = ""
+commitment_level = "confirmed"
+reconnect_attempts = 10
+timeout = 30
+max_decoding_message_size = 67108864
+
+[metrics]
+bind_address = "0.0.0.0:8999"
+endpoint = "http://194.180.188.21:8999"
+job = "solana-mev-monitor"
+export-interval = 10
+
+[logging]
+level = "info"
+format = "json"
+
+# 使用基本的 Yellowstone gRPC 數據源
+[sources.yellowstone_grpc]
+type = "yellowstone_grpc"
+endpoint = "http://194.180.188.21:10000"
+
+# 監控帳戶更新
+[accounts.mev_monitor]
+owners = []
+pubkeys = ["MEViEnscUm6tsQRoGd9h6nLQaQspKj7DB2M5FwM3Xvz"]
+filters = []
+
+# 監控交易更新
+[transactions.mev_transactions]
+account_include = ["MEViEnscUm6tsQRoGd9h6nLQaQspKj7DB2M5FwM3Xvz"]
+account_exclude = []
+vote = false
+failed = false
+
+# Jupiter 相關交易監控
+[transactions.jupiter_swaps]
+account_required = [
+    "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+    "MEViEnscUm6tsQRoGd9h6nLQaQspKj7DB2M5FwM3Xvz"
+]
+vote = false
+failed = false 
